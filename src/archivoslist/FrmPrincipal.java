@@ -19,6 +19,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     
     DefaultTableModel modelotabla = new DefaultTableModel();
     List<Atributos> Datos = new ArrayList<>();
+    int posicion =0;
 
     /**
      * Creates new form FrmPrincipal
@@ -27,6 +28,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         TitulosTabla();
         Cargar();
+        
     }
 
     /**
@@ -49,6 +51,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
         btnguardar = new javax.swing.JButton();
+        btnlimpiar = new javax.swing.JButton();
+        btnactualiza = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,12 +78,38 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDatos);
 
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
+            }
+        });
+
+        btnlimpiar.setText("Limpiar");
+        btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarActionPerformed(evt);
+            }
+        });
+
+        btnactualiza.setText("Actualizar");
+        btnactualiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactualizaActionPerformed(evt);
+            }
+        });
+
+        btneliminar.setText("Eliminar");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
             }
         });
 
@@ -99,13 +130,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addGap(314, 314, 314)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtsexo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                    .addComponent(txtedad, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtsexo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                        .addComponent(txtedad, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(181, 181, 181)
-                                .addComponent(btnguardar)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnlimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnactualiza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(300, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -128,15 +166,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(btnguardar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnguardar)
+                            .addComponent(btnactualiza))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnlimpiar)
+                            .addComponent(btneliminar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(txtsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,8 +200,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
        conexion.Agregar(dato);
        Datos = conexion.getDatos();
        
-       if(conexion.Grabar(Datos)){
-           JOptionPane.showMessageDialog(this,"se grabo correctamente", "grabado",JOptionPane.INFORMATION_MESSAGE);
+       if(conexion.Grabar(Datos,0)){
+           modelotabla = (DefaultTableModel) tbDatos.getModel();
+           modelotabla.getDataVector().removeAllElements();
+           JOptionPane.showMessageDialog(this,"se grabo correctamente", "Grabado",JOptionPane.INFORMATION_MESSAGE);
            CargarRegistrosTabla();
        }else{
            JOptionPane.showMessageDialog(this,"Error al grabar la informacion","Error", JOptionPane.ERROR_MESSAGE);
@@ -163,6 +212,65 @@ public class FrmPrincipal extends javax.swing.JFrame {
        
        //dato.set<String> HashSet = new MashSet<String>();
     }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+        // TODO add your handling code here:
+        int nfilas = tbDatos.getSelectedRowCount();
+        int fila= 0;
+        if (nfilas == 1){
+            fila = tbDatos.getSelectedRow();
+            posicion = fila;
+            txtnombre.setText(tbDatos.getValueAt(fila,0).toString());
+            txtedad.setText(tbDatos.getValueAt(fila,1).toString());
+            txtsexo.setText(tbDatos.getValueAt(fila,2).toString());
+            
+        }
+    }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        // TODO add your handling code here:
+        txtnombre.setText("");
+        txtedad.setText("");
+        txtsexo.setText("");
+    }//GEN-LAST:event_btnlimpiarActionPerformed
+
+    private void btnactualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizaActionPerformed
+        // TODO add your handling code here:
+         Archivo conexion = new Archivo();
+       Atributos dato = new Atributos();
+       dato.setNombre(txtnombre.getText().toString());
+       dato.setEdad(txtedad.getText().toString());
+       dato.setSexo(txtsexo.getText().toString());
+       
+       Datos.set(posicion,dato);
+       
+       if(conexion.Grabar(Datos,1)){
+           modelotabla = (DefaultTableModel) tbDatos.getModel();
+           modelotabla.getDataVector().removeAllElements();
+           JOptionPane.showMessageDialog(this,"se actualizo correctamente", "Actualizado",JOptionPane.INFORMATION_MESSAGE);
+           Cargar();
+       }else{
+           JOptionPane.showMessageDialog(this,"Error al actualizar la informacion","Error", JOptionPane.ERROR_MESSAGE);
+           
+       }
+    }//GEN-LAST:event_btnactualizaActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // TODO add your handling code here:
+       Archivo conexion = new Archivo(); 
+       
+       Datos.remove(posicion);
+       
+       if(conexion.Grabar(Datos,1)){
+           modelotabla = (DefaultTableModel) tbDatos.getModel();
+           modelotabla.getDataVector().removeAllElements();
+           JOptionPane.showMessageDialog(this,"se elimino correctamente", "Eliminado",JOptionPane.INFORMATION_MESSAGE);
+           Cargar();
+       }else{
+           JOptionPane.showMessageDialog(this,"Error al eliminar la informacion","Error", JOptionPane.ERROR_MESSAGE);
+           
+       }
+    }//GEN-LAST:event_btneliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,7 +343,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnactualiza;
+    private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnlimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

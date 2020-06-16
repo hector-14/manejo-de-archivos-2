@@ -1,4 +1,6 @@
-{"nombre":"Luis Antonio Juarez Rojas ","edad":"23","sexo":"Masculino"}
 {"nombre":"Jose Luis Alvarez Santiago","edad":"43","sexo":"Masculino"}
 {"nombre":"Hector Mauricio Ramirez Martinez","edad":"19","sexo":"Masculino"}
+{"nombre":"Juan Carlos Hernandez Santiago","edad":"22","sexo":"Masculino"}
+{"nombre":"Juan Carlos Hernandez Santiago","edad":"22","sexo":"Masculino"}
+{"nombre":"Juan Carlos Hernandez Santiago","edad":"22","sexo":"Masculino"}
 {"nombre":"Hector Mauricio Ramirez Martinez","edad":"19","sexo":"Masculino"}
